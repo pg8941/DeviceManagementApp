@@ -1,0 +1,73 @@
+// AndroidUsbManager.java
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbManager;
+import android.content.Context;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
+
+public class AndroidUsbManager {
+
+    private UsbManager usbManager;
+    private Context context;
+
+    public AndroidUsbManager(Context context) {
+        this.context = context;
+        this.usbManager = (UsbManager) context.getSystemService(Context.USB_SERVICE);
+    }
+
+    public List<Device> getConnectedUsbDevices(){
+        List<Device> devices = new ArrayList<>();
+        HashMap<String, UsbDevice> deviceList = usbManager.getDeviceList();
+        Iterator<UsbDevice> deviceIterator = deviceList.values().iterator();
+        while(deviceIterator.hasNext()){
+            UsbDevice device = deviceIterator.next();
+            //get device info.
+            String deviceName = device.getDeviceName();
+            String deviceId = String.valueOf(device.getDeviceId());
+            Device newDevice = new Device(deviceId, deviceName, "Online", "Android Device");
+            devices.add(newDevice);
+        }
+        return devices;
+    }
+
+    public class Device{
+        public String id;
+        public String name;
+        public String status;
+        public String type;
+
+        public Device(String id, String name, String status, String type){
+            this.id = id;
+            this.name = name;
+            this.status = status;
+            this.type = type;
+        }
+
+        public String getId(){return id;}
+        public String getName(){return name;}
+        public String getStatus(){return status;}
+        public String getType(){return type;}
+    }
+}
+
+// Example Activity.java
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
+import java.util.List;
+
+public class MainActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        AndroidUsbManager usbManager = new AndroidUsbManager(this);
+        List<AndroidUsbManager.Device> devices = usbManager.getConnectedUsbDevices();
+        for(AndroidUsbManager.Device device : devices){
+            Log.d("UsbDevice", "Name: " + device.getName() + ", ID: " + device.getId());
+            //send data to server with retrofit or okhttp.
+        }
+    }
+}
