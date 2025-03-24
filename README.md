@@ -98,13 +98,12 @@ Corporate IT: Managing USB devices in a network.
 Industrial Automation: Monitoring sensors and actuators.
 Smart Homes: Controlling IoT devices.
 Data Centers: Monitoring server hardware.
-Samsung internal testing: Testing the usb framework with varied devices.
-**12. Daily Life Use (Samsung USB Framework Team Member):**
 
-Testing and Validation: This application can be used to test and validate the functionality of the Samsung USB framework with various USB devices.
+
+Testing and Validation: This application can be used to test and validate the functionality of the  USB framework with various USB devices.
 Debugging and Diagnostics: The application's monitoring capabilities can help identify and troubleshoot issues related to USB device communication and compatibility.
 Security Analysis: The application can be extended to analyze the security implications of USB device connections, helping to identify potential vulnerabilities.
-Framework Improvement: The development of this application provides valuable insights into the strengths and weaknesses of the Samsung USB framework, leading to potential improvements.
+Framework Improvement: The development of this application provides valuable insights into the strengths and weaknesses of the USB framework, leading to potential improvements.
 **13. User Point of View:**
 
 Simplified Device Management: Users can easily monitor and control their connected devices.
